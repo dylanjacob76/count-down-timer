@@ -3,7 +3,6 @@ const timerHourEl = document.querySelector(".timer__hour");
 const timerMinEl = document.querySelector(".timer__min");
 const timerSecEl = document.querySelector(".timer__sec");
 
-
 function getTimeDifference(start, end) {
     let millieseconds = Math.floor(end - start);
     let seconds = Math.floor(millieseconds / 1000);
@@ -21,12 +20,11 @@ function getTimeDifference(start, end) {
         rMinutes: minutes,
         rSeconds: seconds
     }
-
 }
 
 let timer = setInterval(function () {
     const startDate = new Date();
-    const endDate = new Date("Januray 29, 2022 11:00:00");
+    const endDate = new Date("Januray 26, 2022 11:00:00");
 
     let timeDifferenceObj = getTimeDifference(startDate, endDate);
     timerDayEl.textContent = timeDifferenceObj.rDays;
@@ -37,7 +35,7 @@ let timer = setInterval(function () {
 
     if (timeDifferenceObj.rDays.toString().length < 2) {
         timerDayEl.textContent = "0" + timeDifferenceObj.rDays
-    } 
+    }
     if (timeDifferenceObj.rHours.toString().length < 2) {
         timerHourEl.textContent = "0" + timeDifferenceObj.rHours
     }
@@ -48,8 +46,13 @@ let timer = setInterval(function () {
         timerSecEl.textContent = "0" + timeDifferenceObj.rSeconds
     }
 
-    if (startDate === endDate) {
-        console.log("end has been reached")
+    if (timeDifferenceObj.rDays === 0 && timeDifferenceObj.rHours === 0 && timeDifferenceObj.rMinutes === 0 && timeDifferenceObj.rSeconds === 0) {
+        clearInterval(timer);
+    } else if (timeDifferenceObj.rDays < 0) {
+        timerDayEl.textContent = "00"
+        timerHourEl.textContent = "00"
+        timerMinEl.textContent = "00"
+        timerSecEl.textContent = "00"
     }
 
 }, 1000);

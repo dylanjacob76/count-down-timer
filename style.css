@@ -30,6 +30,12 @@ main {
     border-bottom: double;
 }
 
+.sub__heading {
+    margin-top: 1rem;
+    font-style: italic;
+    font-size: .95rem;
+}
+
 .timer__body {
     margin-top: 6rem;
     display: flex;
